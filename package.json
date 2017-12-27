@@ -1,0 +1,11 @@
+{
+  "name": "cordova-plugin-sunmi-scanner",
+  "version": "1.0.0",
+  "cordova": {
+    "id": "cordova-plugin-template",
+    "platforms": [
+      "android"
+    ]
+  },
+  "description": "Cordova Sunmi Scanner Plugin"
+}
