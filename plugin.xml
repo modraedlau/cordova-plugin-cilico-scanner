@@ -6,7 +6,7 @@
     <keywords>cordova, plugin, sunmi, scanner</keywords>
 
     <js-module name="SunmiScanner" src="www/sunmi-scanner.js">
-        <clobbers target="SunmiScanner"/>
+        <clobbers target="cordova.plugins.SunmiScanner"/>
     </js-module>
 
     <platform name="android">
