@@ -11,7 +11,6 @@ ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-sunmi-scan
 ionic start MyIonicProject tabs
 cd MyIonicProject
 ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-sunmi-scanner.git
-
 ```
 ### home.html
 ```
@@ -64,13 +63,15 @@ export class HomePage {
 }
 ```
 ### build
+add android platform
 ```
 ionic cordova platform add android
 ```
-*MyIonicProject/platforms/android/project.properties*
+*in MyIonicProject/platforms/android/project.properties*
 ```
 target=android-22
 ```
+build android
 ```
 ionic cordova build android
 ```
