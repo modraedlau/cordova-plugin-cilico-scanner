@@ -27,15 +27,7 @@ public class SunmiScanner extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         this.callbackContext = callbackContext;
 
-        if (action.equals("echo")) {
-            String phrase = args.getString(0);
-            // Echo back the first argument
-            Log.d(TAG, phrase);
-        } else if (action.equals("getDate")) {
-            // An example of returning data back to the web layer
-            final PluginResult result = new PluginResult(PluginResult.Status.OK, (new Date()).toString());
-            callbackContext.sendPluginResult(result);
-        } else if (action.equals("scan")) {
+        if (action.equals("scan")) {
             scan();
         }
         return true;
