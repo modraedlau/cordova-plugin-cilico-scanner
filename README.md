@@ -14,6 +14,53 @@ ionic cordova plugin add cordova-plugin-broadcaster
 npm install --save @ionic-native/broadcaster
 ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-cilico-scanner.git
 ```
+### app.module.ts
+```
+import { NgModule, ErrorHandler } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { MyApp } from './app.component';
+
+import { AboutPage } from '../pages/about/about';
+import { ContactPage } from '../pages/contact/contact';
+import { HomePage } from '../pages/home/home';
+import { TabsPage } from '../pages/tabs/tabs';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { Broadcaster } from '@ionic-native/broadcaster';
+
+@NgModule({
+  declarations: [
+    MyApp,
+    AboutPage,
+    ContactPage,
+    HomePage,
+    TabsPage
+  ],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(MyApp)
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    AboutPage,
+    ContactPage,
+    HomePage,
+    TabsPage
+  ],
+  providers: [
+    Broadcaster,
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
+  ]
+})
+export class AppModule {}
+
+```
 ### home.html
 ```
 <ion-header>
@@ -43,7 +90,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Broadcaster } from '@ionic-native/broadcaster';
 
-// declare let cordova: any;
+declare let cordova: any;
 
 @Component({
   selector: 'page-home',
@@ -56,6 +103,7 @@ export class HomePage {
   }
 
   resv() {
+    cordova.plugins.CilicoScanner.register();
     this.broadcaster.addEventListener('CilicoScanner').subscribe((event) => alert(event));
   }
 
