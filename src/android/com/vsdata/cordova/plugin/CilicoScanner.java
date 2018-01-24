@@ -16,6 +16,7 @@ public class CilicoScanner extends CordovaPlugin {
     private static final String TAG = "CilicoScanner";
     public static final int REQUEST_CODE = 1;
 
+    private CallbackContext callbackContext;
     private String m_Broadcastname;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -24,6 +25,7 @@ public class CilicoScanner extends CordovaPlugin {
     }
 
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+        this.callbackContext = callbackContext;
         initHookEvent();
         return false;
     }
@@ -62,7 +64,7 @@ public class CilicoScanner extends CordovaPlugin {
                     Bundle b = new Bundle();
                     b.putString("code", str);
                     i.putExtras(b);
-                    LocalBroadcastManager.getInstance(this).sendBroadcastSync(i);
+                    LocalBroadcastManager.getInstance(this.callbackContext).sendBroadcastSync(i);
                 }
             }
         }
