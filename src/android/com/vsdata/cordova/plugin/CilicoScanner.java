@@ -73,7 +73,6 @@ public class CilicoScanner extends CordovaPlugin {
                     Bundle b = new Bundle();
                     b.putString("code", str);
                     i.putExtras(b);
-                    CilicoScanner.this.webView.getContext()
                     LocalBroadcastManager.getInstance(getWebViewContext()).sendBroadcastSync(i);
                 }
             }
