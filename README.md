@@ -104,7 +104,7 @@ export class HomePage {
 
   resv() {
     cordova.plugins.CilicoScanner.register();
-    this.broadcaster.addEventListener('CilicoScanner').subscribe((event) => alert(event));
+    this.broadcaster.addEventListener('CilicoScanner').subscribe((event) => alert(event.code));
   }
 
 }
