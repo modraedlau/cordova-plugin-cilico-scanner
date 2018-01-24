@@ -40,6 +40,15 @@ public class CilicoScanner extends CordovaPlugin {
     }
 
     /**
+     * Use to get the Web View Context
+     *
+     * @return
+     */
+    private Context getWebViewContext() {
+        return super.webView.getContext();
+    }
+
+    /**
      * Initializing Hook Event
      * You ABSOLUTELY need to precise getActivity().getApplicationContext()
      * before registerReceiver() otherwise it won't get the good context.
@@ -64,7 +73,8 @@ public class CilicoScanner extends CordovaPlugin {
                     Bundle b = new Bundle();
                     b.putString("code", str);
                     i.putExtras(b);
-                    LocalBroadcastManager.getInstance(this.callbackContext).sendBroadcastSync(i);
+                    CilicoScanner.this.webView.getContext()
+                    LocalBroadcastManager.getInstance(getWebViewContext()).sendBroadcastSync(i);
                 }
             }
         }
