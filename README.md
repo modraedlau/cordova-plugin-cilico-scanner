@@ -18,7 +18,7 @@ console.log( "register CilicoScanner received!" );
 
 var listener = function(e) {
   //log: CilicoScanner received! codeInfo: {"code": "123456789"}
-  console.log( "didShow received! codeInfo: " + JSON.stringify(e));
+  console.log("CilicoScanner received! codeInfo: " + JSON.stringify(e));
 }
 
 window.broadcaster.addEventListener("CilicoScanner", listener);
