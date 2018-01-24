@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-sunmi-scanner",
+  "name": "cordova-plugin-cilico-scanner",
   "version": "1.0.0",
   "cordova": {
     "id": "cordova-plugin-template",
@@ -7,5 +7,5 @@
       "android"
     ]
   },
-  "description": "Cordova Sunmi Scanner Plugin"
+  "description": "Cordova Cilico Scanner Plugin"
 }

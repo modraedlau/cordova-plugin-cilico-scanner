@@ -1,16 +1,16 @@
-# Cordova Sunmi Scanner Plugin
-Sunmi scanner plugin for Cordova
+# Cordova Cilico Scanner Plugin
+Cilico scanner plugin for Cordova
 
 ## Ionic
 ```
-ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-sunmi-scanner.git
+ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-cilico-scanner.git
 ```
 
 ## Example
 ```
 ionic start MyIonicProject tabs
 cd MyIonicProject
-ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-sunmi-scanner.git
+ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-cilico-scanner.git
 ```
 ### home.html
 ```
@@ -53,7 +53,7 @@ export class HomePage {
   }
 
   scan() {
-    cordova.plugins.SunmiScanner.scan().then((barcodeData) => {
+    cordova.plugins.CilicoScanner.scan().then((barcodeData) => {
       alert(barcodeData);
     }).catch((e) => {
       alert(e);
