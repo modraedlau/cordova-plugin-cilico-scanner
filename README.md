@@ -12,25 +12,35 @@ ionic start MyIonicProject tabs
 cd MyIonicProject
 ionic cordova plugin add https://github.com/modraedlau/cordova-plugin-cilico-scanner.git
 ```
-### Javascript
+### home.
+### home.ts
 ```
-console.log( "register CilicoScanner received!" );
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
+import { Broadcaster } from '@ionic-native/broadcaster';
 
-var listener = function(e) {
-  //log: CilicoScanner received! codeInfo: {"code": "123456789"}
-  console.log("CilicoScanner received! codeInfo: " + JSON.stringify(e));
+// declare let cordova: any;
+
+@Component({
+  selector: 'page-home',
+  templateUrl: 'home.html'
+})
+export class HomePage {
+
+  constructor(public navCtrl: NavController, private broadcaster: Broadcaster) {
+
+  }
+
+  resv() {
+    this.broadcaster.addEventListener('CilicoScanner').subscribe((event) => alert(event));
+  }
+
 }
-
-window.broadcaster.addEventListener("CilicoScanner", listener);
 ```
 ### build
 add android platform
 ```
 ionic cordova platform add android
-```
-*in MyIonicProject/platforms/android/project.properties*
-```
-target=android-26
 ```
 build android
 ```
