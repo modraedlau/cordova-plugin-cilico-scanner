@@ -30,7 +30,7 @@ ionic cordova platform add android
 ```
 *in MyIonicProject/platforms/android/project.properties*
 ```
-target=android-22
+target=android-26
 ```
 build android
 ```
