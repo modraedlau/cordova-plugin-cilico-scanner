@@ -19,7 +19,7 @@ public class CilicoScanner extends CordovaPlugin {
     private CallbackContext callbackContext;
     private String m_Broadcastname;
 
-    private static boolean registered = false;
+    private static AtomicBoolean registered = new AtomicBoolean(false);
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -29,11 +29,8 @@ public class CilicoScanner extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         this.callbackContext = callbackContext;
         if ("register".equals(action)) {
-            synchronized (CilicoScanner.class) {
-                if (!registered) {
-                    initHookEvent();
-                    registered = true;
-                }
+            if (registered.compareAndSet(false, true) {
+                initHookEvent();
             }
             return true;
         }
