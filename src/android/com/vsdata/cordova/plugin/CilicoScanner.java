@@ -1,13 +1,13 @@
 package com.vsdata.cordova.plugin;
 
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
-import android.content.IntentFilter;
-import android.content.Intent;
 import android.content.Context;
-import android.util.Log;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Bundle;
 import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import org.apache.cordova.*;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,7 +19,7 @@ public class CilicoScanner extends CordovaPlugin {
     private CallbackContext callbackContext;
     private String m_Broadcastname;
 
-    private static Boolean registered = Boolean.FALSE;
+    private static boolean registered = false;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -29,7 +29,7 @@ public class CilicoScanner extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         this.callbackContext = callbackContext;
         if ("register".equals(action)) {
-            synchronized (registered) {
+            synchronized (CilicoScanner.class) {
                 if (!registered) {
                     initHookEvent();
                     registered = true;
