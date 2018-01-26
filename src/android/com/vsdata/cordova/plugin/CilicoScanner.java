@@ -30,7 +30,7 @@ public class CilicoScanner extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
         this.callbackContext = callbackContext;
         if ("register".equals(action)) {
-            if (registered.compareAndSet(false, true) {
+            if (registered.compareAndSet(false, true)) {
                 initHookEvent();
             }
             return true;
