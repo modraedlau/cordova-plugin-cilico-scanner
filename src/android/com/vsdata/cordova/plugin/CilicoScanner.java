@@ -47,7 +47,7 @@ public class CilicoScanner extends CordovaPlugin {
         boolean bleft = ScanHelper.getScanSwitchLeft(context);
         boolean bright = ScanHelper.getScanSwitchRight(context);
         boolean bsound = ScanHelper.getScanSound(context);
-        
+
         if (!bsound) {
             ScanHelper.setScanSound(context, true);
         }
