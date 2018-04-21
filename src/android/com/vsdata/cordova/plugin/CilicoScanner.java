@@ -24,6 +24,7 @@ public class CilicoScanner extends CordovaPlugin {
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+        configScanner();
         Log.d(TAG, "Initializing CilicoScanner");
     }
 
@@ -31,21 +32,40 @@ public class CilicoScanner extends CordovaPlugin {
         this.callbackContext = callbackContext;
         if ("register".equals(action)) {
             if (registered.compareAndSet(false, true)) {
-                // 设置扫描模式到广播
-                //try {
-                    ScanHelper.setScanSwitchLeft(getActivity().getApplicationContext(), true);
-                    ScanHelper.setScanSwitchRight(getActivity().getApplicationContext(), true);
-                    ScanHelper.setBarcodeReceiveModel(getActivity().getApplicationContext(), 2);
-                //} catch(Exception e) {
-                    // 设置出现异常
-                //}
-
                 // 注册监听广播
                 initHookEvent();
             }
             return true;
         }
         return false;
+    }
+
+    private configScanner() {
+        Class mainActivity;
+        Context context = getApplicationContext();
+        String  packageName = context.getPackageName();
+        Intent  launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
+        String  className = launchIntent.getComponent().getClassName();
+
+        try {
+            //loading the Main Activity to not import it in the plugin
+            mainActivity = Class.forName(className);
+        } catch (Exception e) {
+        }
+
+        // 设置扫描模式到广播
+        ScanHelper.setScanSwitchLeft(mainActivity, true);
+        ScanHelper.setScanSwitchRight(mainActivity, true);
+        ScanHelper.setBarcodeReceiveModel(mainActivity, 2);
+    }
+
+    /**
+     * Use to get the Application Context
+     * 
+     * @return
+     */
+    private Context getApplicationContext() {
+        return getActivity().getApplicationContext();
     }
 
     /**
