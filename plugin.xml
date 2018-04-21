@@ -18,5 +18,7 @@
         </config-file>
         <source-file src="src/android/com/vsdata/cordova/plugin/CilicoScanner.java"
                      target-dir="src/com/vsdata/cordova/plugin"/>
+        <source-file src="src/android/com/vsdata/cordova/plugin/ScanHelper.java"
+                     target-dir="src/com/vsdata/cordova/plugin"/>
     </platform>
 </plugin>
