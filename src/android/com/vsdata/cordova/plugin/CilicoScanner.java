@@ -43,10 +43,23 @@ public class CilicoScanner extends CordovaPlugin {
     private void configScanner() {
         Context context = getApplicationContext();
 
-        // 设置扫描模式到广播
-        ScanHelper.setScanSwitchLeft(context, true);
-        ScanHelper.setScanSwitchRight(context, true);
-        ScanHelper.setBarcodeReceiveModel(context, 2);
+        int scanmode = ScanHelper.getBarcodeReceiveModel(context);
+        boolean bleft = ScanHelper.getScanSwitchLeft(context);
+        boolean bright = ScanHelper.getScanSwitchRight(context);
+        boolean bsound = ScanHelper.getScanSound(context);
+        
+        if (!bsound) {
+            ScanHelper.setScanSound(context, true);
+        }
+        if (!bleft) {
+            ScanHelper.setScanSwitchLeft(context, true);
+        }
+        if (!bright) {
+            ScanHelper.setScanSwitchRight(context, true);
+        }
+        if (scanmode != 2) {
+            ScanHelper.setBarcodeReceiveModel(context, 2);
+        }
     }
 
     /**
