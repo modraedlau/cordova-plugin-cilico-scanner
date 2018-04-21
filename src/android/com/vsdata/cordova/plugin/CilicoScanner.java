@@ -40,7 +40,7 @@ public class CilicoScanner extends CordovaPlugin {
         return false;
     }
 
-    private configScanner() {
+    private void configScanner() {
         Class mainActivity;
         Context context = getApplicationContext();
         String  packageName = context.getPackageName();
