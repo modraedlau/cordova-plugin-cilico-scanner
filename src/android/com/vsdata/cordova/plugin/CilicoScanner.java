@@ -41,22 +41,12 @@ public class CilicoScanner extends CordovaPlugin {
     }
 
     private void configScanner() {
-        Class mainActivity;
         Context context = getApplicationContext();
-        String  packageName = context.getPackageName();
-        Intent  launchIntent = context.getPackageManager().getLaunchIntentForPackage(packageName);
-        String  className = launchIntent.getComponent().getClassName();
-
-        try {
-            //loading the Main Activity to not import it in the plugin
-            mainActivity = Class.forName(className);
-        } catch (Exception e) {
-        }
 
         // 设置扫描模式到广播
-        ScanHelper.setScanSwitchLeft(mainActivity, true);
-        ScanHelper.setScanSwitchRight(mainActivity, true);
-        ScanHelper.setBarcodeReceiveModel(mainActivity, 2);
+        ScanHelper.setScanSwitchLeft(context, true);
+        ScanHelper.setScanSwitchRight(context, true);
+        ScanHelper.setBarcodeReceiveModel(context, 2);
     }
 
     /**
