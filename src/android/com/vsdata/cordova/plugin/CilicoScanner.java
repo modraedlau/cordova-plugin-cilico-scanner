@@ -98,10 +98,10 @@ public class CilicoScanner extends CordovaPlugin {
      */
     public void initHookEvent() {
         if (myBroadcastReceiver == null) {
+            myBroadcastReceiver = new MyBroadcastReceiver();
             IntentFilter intentFilter = new IntentFilter();
             m_Broadcastname = "com.barcode.sendBroadcast";
             intentFilter.addAction(m_Broadcastname);
-            myBroadcastReceiver = new MyBroadcastReceiver();
             getActivity().getApplicationContext().registerReceiver(myBroadcastReceiver, intentFilter);
         }
     }
