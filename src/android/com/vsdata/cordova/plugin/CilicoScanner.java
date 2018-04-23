@@ -22,6 +22,8 @@ public class CilicoScanner extends CordovaPlugin {
 
     private static AtomicBoolean registered = new AtomicBoolean(false);
 
+    private static MyBroadcastReceiver myBroadcastReceiver;
+
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
         configScanner();
@@ -95,16 +97,19 @@ public class CilicoScanner extends CordovaPlugin {
      * before registerReceiver() otherwise it won't get the good context.
      */
     public void initHookEvent() {
-        IntentFilter filter_hook = new IntentFilter();
-        m_Broadcastname = "com.barcode.sendBroadcast";
-        filter_hook.addAction(m_Broadcastname);
-        getActivity().getApplicationContext().registerReceiver(broadcastReceiver_hook, filter_hook);
+        if (myBroadcastReceiver == null) {
+            IntentFilter intentFilter = new IntentFilter();
+            m_Broadcastname = "com.barcode.sendBroadcast";
+            intentFilter.addAction(m_Broadcastname);
+            myBroadcastReceiver = new MyBroadcastReceiver();
+            getActivity().getApplicationContext().registerReceiver(myBroadcastReceiver, intentFilter);
+        }
     }
 
     /**
      * Is natively created by extending CordovaPlugin
      */
-    public BroadcastReceiver broadcastReceiver_hook = new BroadcastReceiver() {
+    class MyBroadcastReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent.getAction().equals(m_Broadcastname)) {
